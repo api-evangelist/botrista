@@ -1,0 +1,69 @@
+# Botrista, Inc.
+> Este acuerdo detalla los términos y condiciones entre Botrista Technology, Inc. y sus franquiciados para la colocación y suministro de equipos. El acuerdo cubre el arrendamiento de equipos, el suministro de consumibles y accesorios, y las responsabilidades de ambas partes en cuanto a instalación, mantenimiento y uso. También aborda la propiedad intelectual, la confidencialidad, la duración del contrato y las condiciones de terminación, estableciendo un marco para la operación de los equipos de Botrista en los restaurantes franquiciados.
+
+## Homepage link
+- [home](https://www.botrista.info/)
+
+## Acceso de agentes de IA
+
+Este sitio está desarrollado por Wix y es compatible con el
+protocolo de contexto de modelo (MCP) para el acceso de IA basada en agentes.
+Los agentes de IA pueden conectarse directamente y obtener contenido del sitio
+en tiempo real y actualizado, sin necesidad de scraping.
+
+- [**Punto de conexión MCP del sitio**](https://www.botrista.info/_api/mcp)
+- [**Documentación del MCP de Wix**](https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp)
+
+## Herramientas MCP disponibles
+
+### GetBusinessDetails
+Recupera información del negocio y del sitio, como zona horaria, email, teléfono y dirección.
+No se requieren parámetros.
+
+### SearchInSite
+Busca información en el sitio.
+- **searchTerm**: El término a buscar en el sitio.
+
+### SearchSiteApiDocs
+Recupera la documentación de API para las soluciones de negocios de Wix instaladas en
+este sitio e informa al cliente de IA cómo usar las API. Usa esta herramienta para
+consultar productos y servicios (en lugar de SearchInSite).
+- **searchTerm**: El término a buscar en la documentación de la API del sitio.
+
+### GenerateVisitorToken
+Crea una nueva sesión de visitante y obtiene un token de acceso de visitante para el sitio.
+Debe llamarse antes de realizar cualquier solicitud a CallWixSiteAPI
+si no hay un token de visitante disponible en el contexto.
+No se requieren parámetros.
+
+### CallWixSiteAPI
+Llama a los métodos de la API en el sitio para realizar acciones en nombre de un visitante,
+ como consultar datos del sitio, reservar una cita o iniciar una compra.
+- **visitorToken**: Token de acceso de visitante. Usa GenerateVisitorToken primero si no está disponible.
+- **url**: URL absoluta del método de API que se va a llamar (p. ej., https://www.wixapis.com/...). Recupérala usando SearchSiteApiDocs.
+- **method**: Método HTTP que se usará para la llamada a la API.
+- **body**: Cuerpo de la solicitud como una cadena JSON válida.
+
+### ReadFullDocsArticle
+Recupera un artículo completo del portal de documentación para desarrolladores de Wix.
+- **articleUrl**: URL de un artículo en el portal de documentación para desarrolladores de Wix.
+
+### ReadFullDocsMethodSchema
+Recupera el esquema completo para un método de API de Wix. Debe llamarse antes de usar
+CallWixSiteAPI para llamar al método real.
+- **articleUrl**: URL del artículo de referencia para el método de la API de Wix.
+
+## Qué pueden hacer los visitantes con IA + MCP
+
+- Obtener información del negocio (datos de contacto, ubicación, horarios)
+- Descubrir productos y servicios en oferta
+- Reservar servicios y hacer reservas
+- Iniciar una compra y ser redirigidos al sitio para completar el proceso de pago
+- Hacer preguntas y obtener respuestas relevantes sin tener que navegar por el sitio
+
+## Notas
+
+- No se requiere autenticación para conectarse al punto de conexión MCP
+- Solo está disponible la información pública accesible en el sitio.
+- El contenido está siempre online y actualizado.
+- Para recibir actualizaciones de herramientas, implementa una llamada tools/list al recibir una notificación de actualización de herramientas

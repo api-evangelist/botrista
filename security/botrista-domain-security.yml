@@ -1,0 +1,67 @@
+generated: '2026-08-02'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml hosts plus the Botrista application hosts
+  discovered during contract discovery (cloudbar.botrista.io, portal.botrista.com,
+  us-orderbws.botrista.io)
+hosts:
+- host: botrista.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 23 00:24:37 2026 GMT
+  hsts: false
+  note: responds HTTP 202 with an sgcaptcha interstitial to non-browser clients; every
+    path including /robots.txt and /.well-known/* is gated behind the challenge
+- host: www.botrista.info
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 24 05:34:14 2026 GMT
+  hsts: true
+  hsts_max_age: 31556952
+- host: botrista.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb  1 23:59:59 2027 GMT
+  hsts: false
+  note: same sgcaptcha interstitial as botrista.com
+- host: cloudbar.botrista.io
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  6 23:59:59 2026 GMT
+  hsts: false
+  note: CloudBar operator web application (nginx behind CloudFront)
+- host: portal.botrista.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 27 23:59:59 2027 GMT
+  hsts: false
+  note: Botrista Data Portal web application (nginx behind CloudFront)
+- host: us-orderbws.botrista.io
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Dec 17 23:59:59 2026 GMT
+  hsts: true
+  hsts_max_age: 15552000
+  hsts_include_subdomains: true
+  note: private application backend for CloudBar; api.botrista.io 307-redirects here
+domains:
+- domain: botrista.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: botrista.io
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine
+  dmarc_pct: 20
+- domain: botrista.info
+  dnssec: true
+  caa: []
+  spf: false
+  dmarc: false
+x-evidence:
+  fetched: '2026-08-02'
+  method: dig (TXT/CAA/DS) plus TLS handshake and HTTP HEAD per host

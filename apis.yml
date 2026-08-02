@@ -1,23 +1,96 @@
 aid: botrista
 name: Botrista
-description: 'Botrista is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Botrista, Inc. is a San Francisco based beverage-automation company founded
+  in 2017 that builds the DrinkBot robotic beverage dispenser and the CloudBar cloud
+  platform behind it. The DrinkBot automates craft beverages — infused teas, flavored
+  lemonades, iced coffees and mocktails — dispensing a drink in roughly twenty seconds
+  from a touchscreen order, and every unit is internet connected so it pulls recipes,
+  reports consumption, tracks ingredient levels and pushes maintenance alerts back to
+  Botrista. CloudBar is the operator-facing web application used by restaurant, campus
+  dining, convenience and theme-park operators to manage recipes, inventory replenishment
+  and sales/menu performance analytics across a fleet of machines, alongside a separate
+  Botrista Data Portal. Botrista sells beverage automation as a service rather than as
+  a developer platform: as of this profiling pass it publishes no public developer portal,
+  no API reference and no machine-readable API contract, and POS integrations are handled
+  case-by-case through its commercial team.'
 url: https://raw.githubusercontent.com/api-evangelist/botrista/refs/heads/main/apis.yml
+image: https://static.wixstatic.com/media/3e2957_4cab0c5391c3485993af28df133a1162%7Emv2.jpg/v1/fit/w_2500,h_1330,al_c/3e2957_4cab0c5391c3485993af28df133a1162%7Emv2.jpg
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profile
+x-tier-reason: enrichment-pipeline
 specificationVersion: '0.20'
 created: '2026-08-02'
 modified: '2026-08-02'
 tags:
 - Company
-apis: []
+- Robotics
+- Beverage
+- Food Service
+- Automation
+- Restaurant Technology
+- IoT
+- Hardware
+apis:
+- aid: botrista:site-mcp
+  name: Botrista Site MCP
+  description: 'The Model Context Protocol endpoint served on Botrista''s Wix-hosted
+    content site (botrista.info). It is a platform-provided site MCP — supplied by the
+    Wix website builder rather than authored by Botrista — that lets an agent read
+    business details, search site content, and query the site''s blog and store data
+    without scraping. It is not a Botrista product API and exposes no DrinkBot or
+    CloudBar capability.'
+  humanURL: https://www.botrista.info/llms.txt
+  baseURL: https://www.botrista.info/_api/mcp
+  tags:
+  - MCP
+  - Agents
+  - Website
+  properties:
+  - type: MCPServer
+    url: mcp/botrista-mcp.yml
+  - type: LLMsTxt
+    url: llms/botrista-llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/botrista-domain-security.yml
+- type: MCPServer
+  url: mcp/botrista-mcp.yml
+- type: LLMsTxt
+  url: llms/botrista-llms.txt
+- type: Conformance
+  url: conformance/botrista-conformance.yml
 - type: Website
+  url: https://botrista.com/
+- type: Blog
+  url: https://www.botrista.info/blog
+- type: BlogRSS
+  url: https://www.botrista.info/blog-feed.xml
+- type: Support
+  url: https://botrista.com/frequently-asked-questions/
+- type: Login
+  url: https://cloudbar.botrista.io/
+- type: TermsOfService
+  url: https://botrista.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://botrista.com/privacy-policy/
+- type: Resources
+  url: https://botrista.com/resources/
+- type: Jobs
+  url: https://botrista.com/careers/jobs/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/botrista
+- type: CrunchBase
+  url: https://www.crunchbase.com/organization/botrista-technology-inc
+- type: SecondaryMarket
   url: https://forgeglobal.com/botrista_stock/
+x-enrichment:
+  date: '2026-08-02'
+  status: enriched
+  artifacts_added: 5
+  pass: local-v1

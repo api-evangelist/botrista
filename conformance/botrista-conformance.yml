@@ -1,0 +1,63 @@
+generated: '2026-08-02'
+method: probed
+source: live contract-discovery probes across every Botrista host (botrista.com,
+  botrista.io, www.botrista.info, cloudbar.botrista.io, portal.botrista.com,
+  us-orderbws.botrista.io, portal-api.botrista.com)
+summary: 'Botrista runs a hardware-and-service business, not an API platform. Contract
+  discovery found no OpenAPI/Swagger, no GraphQL, no AsyncAPI and no gRPC on any host,
+  and no developer portal or API reference anywhere on the public site. The two live
+  application backends it does run — us-orderbws.botrista.io (CloudBar) and
+  portal-api.botrista.com (Botrista Data Portal) — are private first-party backends
+  for Botrista''s own single-page applications; neither publishes a spec or a
+  discovery document. The one standard Botrista genuinely conforms to on a public,
+  anonymous surface is MCP over JSON-RPC 2.0, and only because its Wix-hosted content
+  site ships the Wix platform site-MCP endpoint.'
+standards:
+- id: mcp
+  conforms: true
+  evidence: 'POST tools/list to https://www.botrista.info/_api/mcp returned HTTP 200
+    with 9 tools carrying descriptions and input schemas (mcp/botrista-mcp-tools-list.json);
+    platform-provided by Wix, anonymous access'
+- id: json-rpc-2.0
+  conforms: true
+  evidence: MCP endpoint responds with {"jsonrpc":"2.0","id":...} envelopes
+- id: llmstxt
+  conforms: true
+  evidence: https://www.botrista.info/llms.txt returns HTTP 200 text/plain (Wix-generated,
+    served in Spanish); saved verbatim to llms/botrista-llms.txt
+- id: openapi
+  conforms: false
+  evidence: '/openapi.json, /openapi.yaml, /swagger.json, /v1/openapi.json, /api-docs,
+    /docs, /redoc, /v2/api-docs and /swagger-ui.html all 404 on us-orderbws.botrista.io
+    and portal-api.botrista.com; no spec published anywhere'
+- id: graphql
+  conforms: false
+  evidence: no /graphql surface found on any host
+- id: asyncapi
+  conforms: false
+  evidence: no event, streaming or webhook surface documented; DrinkBot telemetry is
+    machine-to-cloud and not exposed to third parties
+- id: a2a
+  conforms: false
+  evidence: /.well-known/agent-card.json and /.well-known/agent.json miss on every host
+    (404 on the API hosts, SPA HTML catch-all on cloudbar/portal, captcha interstitial
+    on botrista.com and botrista.io)
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: no /.well-known/security.txt on any host
+- id: rfc8615-well-known
+  conforms: false
+  evidence: no /.well-known/ discovery document served on any host
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 surface; /.well-known/oauth-authorization-server 404
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration 404 on the API hosts
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: no published error contract to evaluate
+compliance_program:
+  published: false
+  evidence: no trust center, no SOC 2 / ISO 27001 / PCI / HIPAA claim found on
+    botrista.com, trust.botrista.com or security.botrista.com
