@@ -1,0 +1,21 @@
+{
+  "repo": "botrista",
+  "feeds": [
+    {
+      "source": "https://botrista.com/",
+      "feed_url": "https://botrista.com/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
+      "source": "https://www.botrista.info/blog",
+      "feed_url": "https://www.botrista.info/blog-feed.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-08-06T14:08:46Z"
+}
