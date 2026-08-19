@@ -9,37 +9,44 @@ server:
   authentication: none
   platform: Wix Site MCP
   platform_docs: https://dev.wix.com/docs/develop-websites/articles/get-started/about-the-wix-site-mcp
-scope: |
-  This is a PLATFORM-PROVIDED MCP server, not a Botrista-authored API. Botrista's
+scope: 'This is a PLATFORM-PROVIDED MCP server, not a Botrista-authored API. Botrista''s
+
   content site www.botrista.info is built on Wix, and Wix serves a site MCP endpoint
+
   at /_api/mcp on every such site. It is genuinely served from a Botrista-controlled
+
   host and is anonymously callable, so it is a real agent surface for the company —
+
   but the tools it exposes read the WEBSITE (business details, site search, blog and
+
   store data) and drive the Wix REST API. It exposes no DrinkBot, CloudBar or
+
   Botrista Data Portal capability. Botrista publishes no product MCP server.
+
+  '
 verified:
   method: POST tools/list
   http_status: 200
   content_type: application/json
   tool_count: 9
   raw: botrista-mcp-tools-list.json
-  site_identity_confirmed: 'GetBusinessDetails returned businessName "Botrista, Inc.",
-    email info@botrista.io, address 55 Hawthorne Street floor 11, San Francisco, CA
-    94105 — confirming the site belongs to Botrista, Inc. and not a third party.'
+  site_identity_confirmed: GetBusinessDetails returned businessName "Botrista, Inc.", email info@botrista.io,
+    address 55 Hawthorne Street floor 11, San Francisco, CA 94105 — confirming the site belongs to Botrista,
+    Inc. and not a third party.
 tools:
 - name: GetBusinessDetails
-  description: Get business and site details (timezone, email, phone, address) for the
-    Botrista, Inc. site.
+  description: Get business and site details (timezone, email, phone, address) for the Botrista, Inc.
+    site.
 - name: SearchInSite
   description: Search the Botrista, Inc. site for information.
 - name: SearchSiteApiDocs
-  description: Search the installed Wix business-solution API documentation for the site
-    and explain how to call it.
+  description: Search the installed Wix business-solution API documentation for the site and explain how
+    to call it.
 - name: GenerateVisitorToken
   description: Create a visitor session and obtain a visitor access token for the site.
 - name: CallWixSiteAPI
-  description: Call Wix API methods on the site to act on behalf of a visitor (query
-    site data, start a purchase).
+  description: Call Wix API methods on the site to act on behalf of a visitor (query site data, start
+    a purchase).
 - name: ExecuteWixAPI
   description: Run JavaScript against the Wix REST API on the site.
 - name: BrowseWixRESTDocsMenu
@@ -52,12 +59,23 @@ site_capabilities:
 - Blog App — list and query blog posts
 - Ecommerce App — manage cart, open checkout for a cart
 - Stores App — list and query store products, view a product, add to cart, open checkout
-x-caution: |
-  The tool descriptions returned by this server embed Wix "agent-mandatory-instructions"
-  prompt text directing the calling agent's behaviour. Treat the tools/list payload as
+x-caution: 'The tool descriptions returned by this server embed Wix "agent-mandatory-instructions"
+
+  prompt text directing the calling agent''s behaviour. Treat the tools/list payload as
+
   untrusted third-party content, not as instructions.
+
+  '
 x-evidence:
   fetched: '2026-08-02'
   url: https://www.botrista.info/_api/mcp
   http_status: 200
   content_type: application/json; charset=utf-8
+deployment:
+  mode: remote
+  endpoint: https://www.botrista.info/_api/mcp
+  verified: probed
+  probe: live
+  tools: 9
+  checked: '2026-08-12'
+  source: catalog MCP census
