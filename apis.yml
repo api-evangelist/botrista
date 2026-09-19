@@ -48,6 +48,15 @@ modified: '2026-08-02'
 tags:
 - Company
 - Robotics
+- Beverages
+- Food Service
+- Automation
+- Restaurant Technology
+- IoT
+- Hardware
+tags_raw:
+- Company
+- Robotics
 - Beverage
 - Food Service
 - Automation
@@ -66,6 +75,10 @@ apis:
   humanURL: https://www.botrista.info/llms.txt
   baseURL: https://www.botrista.info/_api/mcp
   tags:
+  - MCP
+  - Agents
+  - Websites
+  tags_raw:
   - MCP
   - Agents
   - Website
